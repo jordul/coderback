@@ -1,0 +1,1 @@
+[{"titulo":"Titulo1","descripcion":"Descripcion","precio":12000,"imagen":"imagen","codigo":"abc123","stock":5,"id":1},{"titulo":"Titulo2","descripcion":"se modifico con el metodo updateProductos de la clase productManager","precio":15000,"imagen":"imagen","codigo":"abc658","stock":10,"id":2}]
