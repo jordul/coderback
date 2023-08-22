@@ -5,10 +5,10 @@ const generarJWT = require("../DAO/helpers/jwt");
 const { googleVerify } = require("../DAO/helpers/google-verify");
 
 const login = async (req = request, res = response) => {
-  const { correo, password } = req.body;
+  const { email, password } = req.body;
   try {
     //validar si el correo existe mediante .findOne
-    const usuario = await Usuarios.findOne({ correo });
+    const usuario = await Usuarios.findOne({ email });
     if (!usuario) {
       return res.status(400).json({
         msg: "Correo o contaraseña invalida : correo",

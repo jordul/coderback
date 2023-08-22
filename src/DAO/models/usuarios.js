@@ -1,21 +1,30 @@
 const { Schema,model } = require('mongoose')
 
 const usuarioChema = Schema({
-    nombre:{
+    first_name:{
         type: String,
         require: [true, 'El nombre es obligatorio']
     },
-    correo:{
+    last_name:{
+        type: String,
+        require: [true, 'El nombre es obligatorio']
+    },
+    email:{
         type: String,
         require: [true, 'El Correo es obligatorio'],
         unique: true
+    },
+    age:{
+        type: Number,
+        require: [true, 'El edad es obligatorio']
     },
     password:{
         type: String,
         require: [true, 'El password es obligatorio']
     },
-    img:{
-        type: String,
+    cart:{
+        type: Schema.Types.ObjectId,
+        ref: 'Cart'
     },
     rol:{
         type: String,
@@ -33,7 +42,7 @@ const usuarioChema = Schema({
 })
 
 usuarioChema.methods.toJSON = function () {
-    const { __v, password,_id, ...usuario } = this.toObject()
+    const { __v, password,_id, last_name, age, estado, google, ...usuario } = this.toObject()
     usuario.uid = _id
     return usuario
 }

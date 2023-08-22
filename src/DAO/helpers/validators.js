@@ -2,8 +2,10 @@ const Role = require("../models/rol");
 const { Usuarios, Producto, Categoria, Carts } = require("../models/index");
 const { request } = require("express");
 
-const RolValidate = async (rol = "") => {
+const RolValidate = async (rol = "", req = request) => {
+
   const existRol = await Role.findOne({ rol });
+  console.log(existRol)
   if (!existRol) {
     throw new Error(`El rol ${rol} no esta registrado en la base de datos`);
   }
@@ -22,7 +24,6 @@ const usuarioIdExist = async (id = "") => {
 };
 
 const validarId = (existId, req = request) => {
-  
   if (!existId) {
     throw new Error(`El id no existe`);
   }
@@ -35,15 +36,15 @@ const validarId = (existId, req = request) => {
 };
 
 const categoriaIdExist = async (id = "") => {
-  const existId = await Categoria
-    .findById(id)
-    .populate({ path: "usuario", select: ["nombre", "correo"] });
+  const existId = await Categoria.findById(id).populate({
+    path: "usuario",
+    select: ["nombre", "correo"],
+  });
 
   validarId(existId);
 };
 
 const productoIdExist = async (id = "") => {
-
   const existId = await Producto.findById(id)
     .populate({
       path: "usuario",
@@ -59,11 +60,9 @@ const productoIdExist = async (id = "") => {
 };
 
 const cartsIdExist = async (id = "") => {
-
-  const existId = await Carts.findById(id)
-    .populate({
-      path: 'products.id',
-      select: 'title price'  // Especifica los campos que quieres obtener de la colección referenciada.
+  const existId = await Carts.findById(id).populate({
+    path: "products.id",
+    select: "title price", // Especifica los campos que quieres obtener de la colección referenciada.
   });
   validarId(existId);
 };
@@ -86,5 +85,5 @@ module.exports = {
   categoriaIdExist,
   isNumber,
   productoIdExist,
-  cartsIdExist
+  cartsIdExist,
 };

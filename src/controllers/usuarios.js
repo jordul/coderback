@@ -16,7 +16,7 @@ const usuariosGet = async( req = request, res = response )=> {
 
 const usuariosPut = async ( req = request , res = response )=> {
     const id = req.params.id
-    const { _id, password, rol, google, correo, ...resto } = req.body
+    const { _id, password, rol, google, email, ...resto } = req.body
     
     if( password ){
         const salt = bcrypt.genSaltSync();
@@ -30,8 +30,8 @@ const usuariosPut = async ( req = request , res = response )=> {
 
 const usuariosPost = async( req = request, res = response )=> {
     
-    const { nombre, correo,password, rol } = req.body
-    const usuario = new Usuarios( {nombre, correo,password, rol} )
+    const { first_name, last_name, email, age, password, rol } = req.body
+    const usuario = new Usuarios( {first_name, last_name, email, age, password, rol} )
     
     //Encriptar la constraseña
     const salt = bcrypt.genSaltSync();
