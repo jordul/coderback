@@ -19,7 +19,7 @@ const validarLink = async(req, res = response) => {
         const usuario = await Usuarios.findById( uid )
 
         if(!usuario){
-            return res.redirect(301, `${process.env.URLDEV}/api/reset-password/link`)
+            return res.redirect(301, `${process.env.URLPROD}/api/reset-password/link`)
             /* res.status(401).json({
                 msg: 'link no valido - usuarion no existe en la BD'
             }) */
@@ -27,13 +27,13 @@ const validarLink = async(req, res = response) => {
 
         //verificar si la uid tiene el estado true
         if( !usuario.estado ){
-            return res.redirect(301, `${process.env.URLDEV}/api/reset-password/link`)
+            return res.redirect(301, `${process.env.URLPROD}/api/reset-password/link`)
         }
 
-        res.redirect(301, `${process.env.URLDEV}/api/reset-password/vistaNewPassword/${token}`)
+        res.redirect(301, `${process.env.URLPROD}/api/reset-password/vistaNewPassword/${token}`)
     } catch (error) {
         console.log(error)
-        res.redirect(301, `${process.env.URLDEV}/api/reset-password/link`)  
+        res.redirect(301, `${process.env.URLPROD}/api/reset-password/link`)  
     }
 }
 
@@ -58,7 +58,7 @@ const resetPassword = async(req = request, res = response) => {
     
         const token = await generarJWT(user._id, "1h");
 
-        const url = `${process.env.URLDEV}/api/reset-password?token=${token}`;
+        const url = `${process.env.URLPROD}/api/reset-password?token=${token}`;
         transporter.sendMail(
           {
             to: user.email,
