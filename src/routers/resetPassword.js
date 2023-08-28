@@ -6,7 +6,7 @@ const { resetPassword, validarLink, newPassword } = require('../controllers/rese
 
 const router = Router();
 
-router.post('/', [
+router.post('/reset', [
     check('email','El correo no es valido').isEmail(),
     validarCampos
 ], resetPassword)
