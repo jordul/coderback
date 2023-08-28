@@ -11,7 +11,8 @@ class Server {
             categoria: '/api/categorias',
             productos: '/api/products',
             auth: '/api/auth',
-            carts: '/api/carts'
+            carts: '/api/carts',
+            resetPassword: '/api/reset-password'
         }
 
         this.eccomerBd();
@@ -36,6 +37,7 @@ class Server {
         this.app.use(this.path.usuarios, require('./routers/usuarios'));
         this.app.use(this.path.categoria, require('./routers/categorias'));
         this.app.use(this.path.auth, require('./routers/auth'));
+        this.app.use(this.path.resetPassword, require('./routers/resetPassword'))
     }
     //subida del servidor
     listen(){

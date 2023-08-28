@@ -42,7 +42,7 @@ const usuarioChema = Schema({
 })
 
 usuarioChema.methods.toJSON = function () {
-    const { __v, password,_id, last_name, age, estado, google, ...usuario } = this.toObject()
+    const { __v,_id, password, last_name, age, estado, google, ...usuario } = this.toObject()
     usuario.uid = _id
     return usuario
 }

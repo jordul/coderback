@@ -1,6 +1,6 @@
-const { response, request } = require("express");
+const { request, response } = require("express");
 const jwt = require("jsonwebtoken")
-const {Usuarios} = require("../DAO/models/index")
+const {Usuarios} = require("../DAO/models")
 
 const validarJWT = async(req = request, res = response, next) => {
 
@@ -41,4 +41,24 @@ const validarJWT = async(req = request, res = response, next) => {
     }
 }
 
-module.exports =  validarJWT
+const validar = async(token, req = request, res = response)=>{
+    if(!token){
+        return res.status(401).json({
+            msg: 'No hay token en la peticion'
+        })
+    }
+    
+    try {
+        const {uid} = await jwt.verify( token, process.env.pass )
+        return uid
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+
+module.exports =  {
+    validarJWT,
+    validar
+}

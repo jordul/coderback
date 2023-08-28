@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const validarJWT = require("../middleware/validarJwt");
+const {validarJWT} = require("../middleware/validarJwt");
 const { check, query } = require("express-validator");
 const { isNumber, productoIdExist } = require("../DAO/helpers/validators");
 const validarCampos = require("../middleware/validarCampos");

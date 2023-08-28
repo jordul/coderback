@@ -1,6 +1,6 @@
 const { Router, response } = require('express')
 const { check, query } = require('express-validator');
-const validarJWT = require('../middleware/validarJwt');
+const {validarJWT} = require('../middleware/validarJwt');
 const validarCampos = require('../middleware/validarCampos');
 const { crearCategoria, categoriaPaginado, categoriaById, updateCategoria, deleteCategoria } = require('../controllers/categoria');
 const { isNumber, categoriaIdExist } = require('../DAO/helpers/validators');

@@ -33,7 +33,7 @@ const crearCategoria = async (req = request, res = response) => {
   const nombre = req.body.nombre.toUpperCase();
   const {stock} = req.body;
 
-
+  console.log(nombre)
   try {
     const producto = await Categoria.findOne({ nombre });
 

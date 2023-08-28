@@ -32,7 +32,7 @@ const login = async (req = request, res = response) => {
     }
 
     //JWT
-    const token = await generarJWT(usuario.id);
+    const token = await generarJWT(usuario.id,'4h');
 
     res.json({
       usuario,
@@ -73,7 +73,7 @@ const loginGoogle = async (req, res = response) => {
     }
 
     //Generar el jwt
-    const token = await generarJWT( usuario.id )
+    const token = await generarJWT( usuario.id, '4h' )
 
     res.status(200).json({
       usuario,

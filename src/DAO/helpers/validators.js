@@ -18,6 +18,13 @@ const emailExist = async (correo = "") => {
   }
 };
 
+const emailCorrecto = async (correo = "") => {
+  const existCorreo = await Usuarios.findOne({ correo });
+  if (!existCorreo) {
+    throw new Error(`El usuario no existe`);
+  }
+};
+
 const usuarioIdExist = async (id = "") => {
   const existId = await Usuarios.findById(id);
   validarId(existId);
@@ -86,4 +93,5 @@ module.exports = {
   isNumber,
   productoIdExist,
   cartsIdExist,
+  emailCorrecto
 };
