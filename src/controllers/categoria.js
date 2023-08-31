@@ -31,7 +31,6 @@ const categoriaById = async( req = request, res = response ) => {
 
 const crearCategoria = async (req = request, res = response) => {
   const nombre = req.body.nombre.toUpperCase();
-  const {stock} = req.body;
 
   console.log(nombre)
   try {
@@ -45,7 +44,6 @@ const crearCategoria = async (req = request, res = response) => {
 
     const data = {
       nombre: nombre,
-      stock: stock,
       usuario: req.usuario._id,
     };
 
@@ -64,9 +62,9 @@ const crearCategoria = async (req = request, res = response) => {
 // actualizarCategoria
 const updateCategoria = async( req = request, res = response ) => {
   const id = req.params.id
-  const stock = req.body
+  const nombre = req.body.nombre.toUpperCase()
   try {
-    await Categoria.findByIdAndUpdate( id, stock )
+    await Categoria.findByIdAndUpdate( id, nombre )
     res.status(200).json({msg: 'Producto actualizado'})
   } catch (error) {
     console.log(error);
